@@ -1,0 +1,38 @@
+        <div class="col-sm-12">
+          <h4 class="tn-heading">Batch Changes</h4>
+        </div>
+        <div class="col-sm-12 tn-batch-count">
+          <div class="col-sm-6 no-padding">
+            <h6><span>{{totalLength}} Total</span><span>&#124;</span><span>{{totalLength - countcompleted}} Pending</span></h6>
+          </div>
+          <div class="col-sm-6 text-right no-padding">
+              <button class="tn-button tn-action-button" (click)="staticModal.show()">Request New Batch changes</button>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="tn-table">
+            <div class="tn-table-head">
+              <h6>Status</h6>
+              <h6>Change Type</h6>
+              <h6>Effective Date</h6>
+              <h6>Number Of Employees</h6>
+              <h6>Submitted On</h6>
+              <h6>Submitted By</h6>
+            </div>
+            <div class="tn-table-body">
+              <div class="tn-table-row" *ngFor="let batchData of data">
+                <h6>{{batchData.status}}</h6>
+                <h6 [innerHTML]="batchData.change"></h6>
+                <h6>{{batchData.effectiveDate}}</h6>
+                <h6>{{batchData.employeeCount}}</h6>
+                <h6>{{batchData.submittedOn}}</h6>
+                <h6>{{batchData.submittedBy}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+             tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          <tn-modal [staticModal]="staticModal"></tn-modal>
+        </div>

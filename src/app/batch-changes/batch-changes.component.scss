@@ -1,0 +1,35 @@
+@import "../../styles.scss";
+
+.tn-batch-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  span {
+    margin-right: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+}
+.modal-dialog {
+  &.batchChange-modal {
+    width: 550px;
+    .modal-body{
+      padding: 50px 50px 0 50px;
+    }
+    .modal-header {
+      border: none;
+      .close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        opacity: 1;
+      }
+
+    }
+    .modal-footer{
+      border: none;
+    }
+  }
+}
