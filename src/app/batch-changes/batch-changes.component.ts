@@ -8,11 +8,12 @@ import {Http} from '@angular/http';
 })
 export class BatchChangesComponent implements OnInit {
   data;
+  isBatchChange;
   countcompleted : number;
   totalLength : number;
-  staticModal;
   constructor(private  http : Http) { }
   ngOnInit() {
+    this.isBatchChange;
     this.http.get('json/batchChanage.json').subscribe(res => {
       let IsThis = this;
       /*To get count of completed */
@@ -29,7 +30,6 @@ export class BatchChangesComponent implements OnInit {
       this.totalLength = resultData.length;
 
     });
-    console.log(this.staticModal);
   }
 
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input , Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'tn-modal',
@@ -9,11 +9,16 @@ export class ModalComponent implements OnInit {
   @Input() staticModal;
   department;
   location;
+  @Output() isBatchChange: boolean = false;
+  isDept: boolean = false;
+  isLoc: boolean = false;
+  isleavePlane: boolean = false;
   constructor() { }
 
   ngOnInit() {
   }
   batchChange(staticModal){
+    this.isBatchChange = true;
     let dept, loc;
     if(this.department == true && (this.location == false || this.location == undefined)){
       console.log('department');
