@@ -3,16 +3,16 @@
         </div>
         <div class="col-sm-12 tn-batch-count">
           <div class="col-sm-6 no-padding">
-            <h6><span>{{totalLength}} Total</span><span>&#124;</span><span>{{totalLength - countcompleted}} Pending</span></h6>
+            <h6><span>{{totalLength}} Total</span><span>&#124;</span><span>{{totalLength - countCompleted}} Pending</span></h6>
           </div>
           <div class="col-sm-6 text-right no-padding">
               <button class="tn-button tn-action-button" (click)="staticModal.show()">Request New Batch changes</button>
           </div>
         </div>
-        <tn-batch-change-table *ngIf="!isBatchChange" [batchData]="data"></tn-batch-change-table>
-        <tn-request-batch-change *ngIf="isBatchChange"></tn-request-batch-change>
+        <tn-batch-change-table [batchData]="data"></tn-batch-change-table>
+
 
         <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
              tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-          <tn-modal [staticModal]="staticModal"></tn-modal>
+          <tn-modal [staticModal]="staticModal" (isBatchChange)="openChangeData($event)"></tn-modal>
         </div>

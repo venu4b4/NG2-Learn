@@ -11,6 +11,8 @@ import { ModalComponent } from './batch-changes/modal/modal.component';
 import { RequestBatchChangeComponent } from './batch-changes/request-batch-change/request-batch-change.component';
 import { BatchChangeTableComponent } from './batch-changes/batch-change-table/batch-change-table.component';
 
+import { batchChangeService } from '../app/service/batch-cahage.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,7 @@ import { BatchChangeTableComponent } from './batch-changes/batch-change-table/ba
     ModalModule.forRoot(),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [batchChangeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

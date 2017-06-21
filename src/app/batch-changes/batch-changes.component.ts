@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Output, EventEmitter } from '@angular/core';
 import {Http} from '@angular/http';
+
+import { batchChangeService } from '../service/batch-cahage.service'
 
 @Component({
   selector: 'tn-batch-changes',
@@ -8,22 +10,22 @@ import {Http} from '@angular/http';
 })
 export class BatchChangesComponent implements OnInit {
   data;
-  isBatchChange;
-  countcompleted : number;
+  @Output() isBatchChange = new EventEmitter();
+  countCompleted : number;
   totalLength : number;
   constructor(private  http : Http) { }
   ngOnInit() {
-    this.isBatchChange;
+    /*this.isBatchChange;*/
     this.http.get('json/batchChanage.json').subscribe(res => {
       let IsThis = this;
       /*To get count of completed */
-      this.countcompleted = res.json().data.filter(function(countData){
+      this.countCompleted = res.json().data.filter(function(countData){
         return countData.status == "Completed";
       }).length;
 
-      let resultData = res.json().data.map(function(requesrData){
-        requesrData.change =  requesrData.changeType.replace(/,/g, ",<br/>");
-        return requesrData;
+      let resultData = res.json().data.map(function(requestData){
+        requestData.change =  requestData.changeType.replace(/,/g, ",<br/>");
+        return requestData;
       });
 
       this.data = resultData;
@@ -31,5 +33,7 @@ export class BatchChangesComponent implements OnInit {
 
     });
   }
-
+  openChangeData(event) {
+    this.isBatchChange.emit(event.bool);
+  }
 }
