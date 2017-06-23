@@ -7,9 +7,5 @@ export class batchChangeService {
     isDept: boolean;
     isLoc: boolean;
     isLeavePlane: boolean;
-
-    change(){
-     console.log('first service is success');
-    }
     constructor(){}
 }

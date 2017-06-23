@@ -11,11 +11,11 @@ export class BatchChangeTableComponent implements OnInit {
   @Input() batchData;
   constructor(private _batchChange: batchChangeService) { }
 
-  changeRequest(){
+  /*changeRequest(){
     this._batchChange.change();
-  }
+  }*/
   ngOnInit() {
-    this.changeRequest();
+   /* this.changeRequest();*/
 
   }
 

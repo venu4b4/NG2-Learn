@@ -1,0 +1,25 @@
+
+.batchChange-modal{
+  .tn-checkBox{
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    label{
+      margin-right: 15px;
+    }
+    input[type= "checkbox"]{
+      &+ label:before{
+        font-size: 30px;
+        margin-right:40px;
+      }
+      &:checked {
+        &+ label:before {
+          font-size: 30px;
+          margin-right: 40px;
+        }
+      }
+    }
+  }
+}/* width: 100%; */
+/* border-bottom: 1px solid #ddd; */
+/* padding-bottom: 15px; */

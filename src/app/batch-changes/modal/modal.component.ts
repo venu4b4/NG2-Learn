@@ -19,26 +19,23 @@ export class ModalComponent implements OnInit {
     this._batchChange.isLeavePlane = false;
   }
   batchChange(staticModal){
-    /*this.isBatchChange = true;*/
-    this.isBatchChange.emit({bool: true});
     let dept, loc;
+    this.isBatchChange.emit({bool: true});
     if(this.department == true && (this.location == false || this.location == undefined)){
-      console.log('department');
       this.staticModal.hide();
       this._batchChange.isDept = true;
       this._batchChange.isLoc = false;
     }
     else if(this.location == true && (this.department == false || this.department == undefined)){
-      console.log('location');
       this.staticModal.hide();
       this._batchChange.isDept = false;
       this._batchChange.isLoc = true;
     }
     else if(this.department == true && this.location == true){
-      console.log('department && location');
       this.staticModal.hide();
       this._batchChange.isDept = true;
       this._batchChange.isLoc = true;
     }
+
   }
 }

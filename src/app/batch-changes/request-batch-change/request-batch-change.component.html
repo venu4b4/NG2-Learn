@@ -1,25 +1,61 @@
 <div class="col-sm-12">
-  <h4 class="tn-heading"><a (click)="goToHome()"> Batch Changes</a><span> </span>Create New Batch Changes Request</h4>
+  <h4 class="tn-heading"><a class="hand" (click)="goToHome()"> Batch Changes</a><span> </span>Create New Batch Changes Request</h4>
 </div>
+<div class="col-sm-12 default-margin-bottom">
+  <div class="col-sm-6 no-padding default-margin-top">
+    <div class="calender-without-form">
+      <label class="pull-left">Effective Date:</label>
+      <div class="tn-input-calender">
+        <span class="input-group-addon hand"><i class="icon-icon_calendar"></i></span>
+        <input id="effectiveDate" type="text" class="form-control" placeholder="05/06/2017">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 no-padding">
+    <div class="pull-right text-center">
+      <button class="tn-button tn-undo-button" *ngIf="false">Undo changes</button>
+      <button class="tn-button tn-cancel-button" (click)="goToHome()">cancel</button>
+      <button class="tn-button tn-delete-button" *ngIf="false">Delete</button>
+      <button class="tn-button tn-action-button">Save</button>
+    </div>
+  </div>
 
+</div>
 <div class="col-sm-12">
-  <div class="tn-table">
+  <div class="tn-table request-batch-change-table">
     <div class="tn-table-head">
-      <h6>Status</h6>
-      <h6>Change Type</h6>
-      <h6>Effective Date</h6>
-      <h6>Number Of Employees</h6>
-      <h6>Submitted On</h6>
-      <h6>Submitted By</h6>
+       <h6>
+        <div class="tn-checkBox no-margin">
+          <input id="changeReqcheckAll" type="checkbox"
+                 [(ngModel)]="changeReqcheckAll"
+                 name="changeReqcheckAll" (change)="checkAll(changeReqcheckAll)"
+          />
+          <label for="changeReqcheckAll">
+          </label>
+        </div>
+        <span class="default-margin-left">Employee Name</span></h6>
+      <h6>Position</h6>
+      <h6>Direct Manager</h6>
+      <h6 *ngIf="_batchChange.isDept">Department</h6>
+      <h6 *ngIf="_batchChange.isLoc">Location</h6>
     </div>
     <div class="tn-table-body">
-      <div class="tn-table-row">
-        <h6></h6>
-        <h6></h6>
-        <h6></h6>
-        <h6></h6>
-        <h6></h6>
-        <h6></h6>
+      <div class="tn-table-row hand" *ngFor="let resultData of requestChagneData.employees">
+
+        <h6>
+          <div class="tn-checkBox no-margin"> 
+            <input id="changeReqcheck_{{resultData.deptId}}" type="checkbox"
+                   [(ngModel)]="resultData.changeReq"
+                   name="changeReq"
+            />
+            <label for="changeReqcheck_{{resultData.deptId}}">
+            </label>
+          </div>
+          <span class="default-margin-left">{{resultData.employeeName}}</span></h6>
+        <h6>{{resultData.position}}</h6>
+        <h6>{{resultData.managerName}}</h6>
+        <h6 *ngIf="_batchChange.isDept">{{resultData.deptName}}</h6>
+        <h6 *ngIf="_batchChange.isLoc">{{resultData.locationName}}</h6>
       </div>
     </div>
   </div>
