@@ -10,13 +10,17 @@
     </div>
     <form (ngSubmit)="batchChange(staticModal)" #f="ngForm">
       <div class="modal-body">
-        <div class="form-group">
+        <div class="form-group relative">
           <label for="effectiveDate">Effective Date</label>
           <div class="input-group col-sm-6 tn-input-calender">
-            <span class="input-group-addon hand"><i class="icon-icon_calendar"></i></span>
-            <input id="effectiveDate" type="text" class="form-control" placeholder="05/06/2017">
+            <span class="input-group-addon hand" (click)="open()"><i class="icon-icon_calendar"></i></span>
+            <input id="effectiveDate" [ngModelOptions]="{standalone: true}" [(ngModel)]="getDate" type="text" class="form-control" placeholder="05/06/2017">
+          </div>
+          <div class="tn-datePicker" *ngIf="opened">
+            <datepicker [(ngModel)]="dt" (selectionDone)="open()" [ngModelOptions]="{standalone: true}" [minDate]="minDate" [showWeeks]="false" [dateDisabled]="dateDisabled"></datepicker>
           </div>
         </div>
+
         <div class="form-group tn-checkBox">
           <!--[(ngModel)]="batch.department"-->
           <input id="deptChange" type="checkbox"

@@ -1,7 +1,6 @@
 import { Component, OnInit , Output, EventEmitter } from '@angular/core';
 import {Http} from '@angular/http';
 
-import { batchChangeService } from '../service/batch-cahage.service'
 
 @Component({
   selector: 'tn-batch-changes',

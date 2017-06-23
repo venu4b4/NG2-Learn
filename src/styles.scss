@@ -204,3 +204,12 @@ tn-batch-changes{
     width: 150px;
   }
 }
+.relative{
+  position: relative;
+  .tn-datePicker{
+    position: absolute;
+    top:100%;
+    z-index: 9999;
+    left: 0;
+  }
+}
