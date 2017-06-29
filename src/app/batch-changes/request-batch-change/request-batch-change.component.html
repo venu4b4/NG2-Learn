@@ -5,9 +5,14 @@
   <div class="col-sm-6 no-padding default-margin-top">
     <div class="calender-without-form">
       <label class="pull-left">Effective Date:</label>
-      <div class="tn-input-calender">
-        <span class="input-group-addon hand"><i class="icon-icon_calendar"></i></span>
-        <input id="effectiveDate" type="text" class="form-control" placeholder="05/06/2017">
+      <div class="tn-input-calender relative">
+        <span class="input-group-addon hand" (click)="open()"><i class="icon-icon_calendar"></i></span>
+        <input id="effectiveDate"
+               [ngModelOptions]="{standalone: true}" [(ngModel)]="getDate"
+               type="text" class="form-control" placeholder="05/06/2017">
+        <div class="tn-datePicker" *ngIf="opened">
+          <datepicker [(ngModel)]="dt" (selectionDone)="open()" [ngModelOptions]="{standalone: true}" [minDate]="minDate" [showWeeks]="false" [dateDisabled]="dateDisabled"></datepicker>
+        </div>
       </div>
     </div>
   </div>
@@ -27,35 +32,59 @@
        <h6>
         <div class="tn-checkBox no-margin">
           <input id="changeReqcheckAll" type="checkbox"
-                 [(ngModel)]="changeReqcheckAll"
+                 [(ngModel)]="changeReqcheckAll" [checked]="isAllChecked(changeReqcheckAll)"
                  name="changeReqcheckAll" (change)="checkAll(changeReqcheckAll)"
           />
           <label for="changeReqcheckAll">
+            <!--{{changeReqcheckAll}}-->
           </label>
         </div>
         <span class="default-margin-left">Employee Name</span></h6>
       <h6>Position</h6>
       <h6>Direct Manager</h6>
-      <h6 *ngIf="_batchChange.isDept">Department</h6>
+      <h6 *ngIf="_batchChange.isDept">
+        <!--<span *ngIf="!changeReqcheckAll">Department</span>
+        <span *ngIf="changeReqcheckAll">
+            Select
+        </span>-->
+        Department
+      </h6>
       <h6 *ngIf="_batchChange.isLoc">Location</h6>
     </div>
     <div class="tn-table-body">
-      <div class="tn-table-row hand" *ngFor="let resultData of requestChagneData.employees">
+      <div class="tn-table-row" *ngFor="let resultData of requestChagneData.employees ;let i = index" [attr.data-index]="i">
 
         <h6>
-          <div class="tn-checkBox no-margin"> 
-            <input id="changeReqcheck_{{resultData.deptId}}" type="checkbox"
-                   [(ngModel)]="resultData.changeReq"
+          <div class="tn-checkBox no-margin">
+            <input id="changeReqcheck_{{i}}" type="checkbox"
+                   [(ngModel)]="resultData.state"
                    name="changeReq"
             />
-            <label for="changeReqcheck_{{resultData.deptId}}">
+            <label for="changeReqcheck_{{i}}">
+              <!--{{resultData.state}}-->
             </label>
           </div>
           <span class="default-margin-left">{{resultData.employeeName}}</span></h6>
         <h6>{{resultData.position}}</h6>
         <h6>{{resultData.managerName}}</h6>
-        <h6 *ngIf="_batchChange.isDept">{{resultData.deptName}}</h6>
-        <h6 *ngIf="_batchChange.isLoc">{{resultData.locationName}}</h6>
+        <h6 *ngIf="_batchChange.isDept">
+          <span *ngIf="!resultData.state">{{resultData.deptName}}</span>
+          <span *ngIf="resultData.state">
+            <select [(ngModel)]="resultData.deptName">
+               <option>Select Department</option>
+               <option *ngFor="let dept of requestChagneData.employees | unique: 'deptName'">{{dept.deptName }}</option>
+            </select>
+          </span>
+          </h6>
+        <h6 *ngIf="_batchChange.isLoc">
+          <span *ngIf="!resultData.state">{{resultData.locationName}}</span>
+          <span *ngIf="resultData.state">
+            <select [(ngModel)]="resultData.locationName">
+               <option>Select Location</option>
+               <option *ngFor="let loc of requestChagneData.employees | unique: 'locationName'">{{loc.locationName }}</option>
+            </select>
+          </span>
+        </h6>
       </div>
     </div>
   </div>

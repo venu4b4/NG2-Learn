@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { batchChangeService } from '../../service/batch-cahage.service'
+import { batchChangeService } from '../../service/batch-cahage.service';
 import {Http} from '@angular/http';
 
 @Component({
@@ -9,9 +9,17 @@ import {Http} from '@angular/http';
   styleUrls: ['Request-batch-change.component.scss']
 })
 export class RequestBatchChangeComponent implements OnInit {
-  public requestChagneData: Object = {
+  public requestChagneData: any = {
     employees: []
   };
+  public dt: Date = new Date();
+  private opened: boolean = false;
+  get getDate(): string {
+    return this.dt.toLocaleDateString();
+  }
+  public open(): void {
+    this.opened = !this.opened;
+  }
   @Output() isBatchChange = new EventEmitter();
 
   constructor(private _batchChange: batchChangeService,private  http : Http) { }
@@ -35,12 +43,23 @@ export class RequestBatchChangeComponent implements OnInit {
       );
   };
   /*To do: select all check boxes*/
-  checkAll(changeReqcheckAll,totalCheckboxes){
-    if(changeReqcheckAll){
-      console.log(totalCheckboxes);
-    }
-    else {
-      console.log('is unchecked');
-    }
+  checkAll(changeReqCheckAll){
+     this.requestChagneData.employees.map(x => x.state = changeReqCheckAll)
   };
+  isAllChecked(changeReqCheckAll) {
+     return this.requestChagneData.employees.every(_ => _.state);
+  }
+
+/*  checksingle(allCheck,index,isdata){
+    let count = this.requestChagneData.employees.length;
+    if(isdata) {
+      this.checkSelectbox = true;
+    }
+    else{
+      this.checkSelectbox = false;
+    }
+    let checkCount = this.requestChagneData.employees.filter(function(item){
+     return item.Selected == true;
+    }).length;
+  }*/
 }
