@@ -70,7 +70,7 @@
         <h6 *ngIf="_batchChange.isDept">
           <span *ngIf="!resultData.state">{{resultData.deptName}}</span>
           <span *ngIf="resultData.state">
-            <select [(ngModel)]="resultData.deptName">
+            <select>
                <option>Select Department</option>
                <option *ngFor="let dept of requestChagneData.employees | unique: 'deptName'">{{dept.deptName }}</option>
             </select>
@@ -79,7 +79,7 @@
         <h6 *ngIf="_batchChange.isLoc">
           <span *ngIf="!resultData.state">{{resultData.locationName}}</span>
           <span *ngIf="resultData.state">
-            <select [(ngModel)]="resultData.locationName">
+            <select>
                <option>Select Location</option>
                <option *ngFor="let loc of requestChagneData.employees | unique: 'locationName'">{{loc.locationName }}</option>
             </select>

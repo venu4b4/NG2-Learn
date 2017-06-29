@@ -11,10 +11,12 @@ import { BatchChangesComponent } from './batch-changes/batch-changes.component';
 import { ModalComponent } from './batch-changes/modal/modal.component';
 import { RequestBatchChangeComponent } from './batch-changes/request-batch-change/request-batch-change.component';
 import { BatchChangeTableComponent } from './batch-changes/batch-change-table/batch-change-table.component';
+import { ViewBatchChangeDetailsComponent } from './batch-changes/view-batch-change-details/view-batch-change-details.component';
 
 import { batchChangeService } from 'app/service/batch-cahage.service';
 
 import { uniquePipe } from 'app/filters/unique';
+
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { uniquePipe } from 'app/filters/unique';
     ModalComponent,
     RequestBatchChangeComponent,
     BatchChangeTableComponent,
-    uniquePipe
+    uniquePipe,
+    ViewBatchChangeDetailsComponent
   ],
   imports: [
     BrowserModule,

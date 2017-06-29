@@ -9,7 +9,7 @@
       <h6>Submitted By</h6>
     </div>
     <div class="tn-table-body">
-      <div class="tn-table-row hand" *ngFor="let batchData of batchData">
+      <div class="tn-table-row hand" *ngFor="let batchData of batchData ; let i = index" (click)="viewChangeDetails(batchData)">
         <h6>{{batchData.status}}</h6>
         <h6 [innerHTML]="batchData.change"></h6>
         <h6>{{batchData.effectiveDate}}</h6>

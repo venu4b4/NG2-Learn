@@ -1,7 +1,8 @@
 <!--<a href="">Batch Changes</a>-->
 <div class="row full-container">
   <div class="container">
-      <tn-batch-changes (isBatchChange)="openChangeData($event)" *ngIf="!isBatchChange"></tn-batch-changes>
+      <tn-batch-changes (isBatchChange)="openChangeData($event)" *ngIf="!isBatchChange && !isviewBatchChange"></tn-batch-changes>
       <tn-request-batch-change *ngIf="isBatchChange" (isBatchChange)="openChangeData($event)"></tn-request-batch-change>
+      <tn-view-batch-change-details (isChange)="func($event)" *ngIf="isviewBatchChange && !isBatchChange"></tn-view-batch-change-details>
   </div>
 </div>
