@@ -9,16 +9,14 @@ import { batchChangeService } from '../../service/batch-cahage.service'
 })
 export class BatchChangeTableComponent implements OnInit {
   @Input() batchData;
-  data;
-  @Output() isChange = new EventEmitter();
   constructor(private _batchChange: batchChangeService) { }
 
+  /*changeRequest(){
+    this._batchChange.change();
+  }*/
   ngOnInit() {
    /* this.changeRequest();*/
 
   }
-  viewChangeDetails(data){
-    this.isChange.emit({bool: true});
-    /*this.isviewBatchChangeData.emit(data);*/
-  }
+
 }

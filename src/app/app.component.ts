@@ -7,9 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   isBatchChange;
-  isviewBatchChange;
-  func(event) {
+  openChangeData(event) {
     this.isBatchChange = event;
-    this.isviewBatchChange = event;
   }
 }
